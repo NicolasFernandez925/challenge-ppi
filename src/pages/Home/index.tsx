@@ -8,11 +8,14 @@ import { Currency } from "../../services/Currency";
 
 import "./style.css";
 
+const currencySymbol = (currency: string) => currency.split("-")[0].trim();
+const currencyName = (currency: string) => currency.split("-")[1].trim();
+
 const Home = () => {
   const [currencies, setCurrencies] = useState<ICurrencies | {}>({});
   const [amount, setAmount] = useState<number>(1);
-  const [currencyFrom, setCurrencyFrom] = useState<string>("US Dollar");
-  const [currencyTo, setCurrencyTo] = useState<string>("eur - Euro");
+  const [currencyFrom, setCurrencyFrom] = useState<string>("USD - US Dollar");
+  const [currencyTo, setCurrencyTo] = useState<string>("EUR - Euro");
 
   const getCurrencies = async () => {
     try {
@@ -54,10 +57,16 @@ const Home = () => {
     getCurrencies();
   }, []);
 
+  console.log(currencyTo);
+
   return (
     <div className="exchange">
       <img className="exchange__banner" src={Banner} alt="banner" />
-      <h1>Convert 1 Euro to Canadian Dollar - EUR to CA$</h1>
+      <h1>
+        Convert {amount} {currencyName(currencyFrom)} to{" "}
+        {currencyName(currencyTo)} - {currencySymbol(currencyFrom)} to{" "}
+        {currencySymbol(currencyTo)}
+      </h1>
       <div className="exchange__container">
         <div className="echange__currencies">
           <FormSelectCurrencies

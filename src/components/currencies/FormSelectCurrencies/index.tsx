@@ -30,6 +30,14 @@ const FormSelectCurrencies: React.FC<IProps> = ({
 }) => {
   const convertCurrenciesToArray = Object.entries(currencies);
 
+  const currencyOptions = (): React.ReactNode => {
+    return convertCurrenciesToArray.map(([key, value]) => (
+      <option key={key} value={key + " - " + value.name}>
+        {key + " - " + value.name}
+      </option>
+    ));
+  };
+
   return (
     <div className="form__container">
       <form className="form">
@@ -48,11 +56,7 @@ const FormSelectCurrencies: React.FC<IProps> = ({
             onChange={handleChangeFrom}
             value={currencyFrom}
           >
-            {convertCurrenciesToArray.map(([key, value]) => (
-              <option key={key} value={value.name}>
-                {key + " - " + value.name}
-              </option>
-            ))}
+            {currencyOptions()}
           </select>
           <img
             onClick={() => exchangeCurrencies(currencyFrom, currencyTo)}
@@ -70,11 +74,7 @@ const FormSelectCurrencies: React.FC<IProps> = ({
           onChange={handleChangeTo}
           value={currencyTo}
         >
-          {convertCurrenciesToArray.map(([key, value]) => (
-            <option key={key} value={value.name}>
-              {key + " - " + value.name}
-            </option>
-          ))}
+          {currencyOptions()}
         </select>
       </form>
     </div>
