@@ -12,6 +12,7 @@ interface IProps {
   ) => void;
   handleChangeFrom: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   handleChangeTo: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  exchangeCurrencies: (currencyFrom: string, currencyTo: string) => void;
   currencyTo: string;
   currencyFrom: string;
   amount: number;
@@ -22,6 +23,7 @@ const FormSelectCurrencies: React.FC<IProps> = ({
   handleChangeAmount,
   handleChangeFrom,
   handleChangeTo,
+  exchangeCurrencies,
   currencyTo,
   currencyFrom,
   amount,
@@ -53,6 +55,7 @@ const FormSelectCurrencies: React.FC<IProps> = ({
             ))}
           </select>
           <img
+            onClick={() => exchangeCurrencies(currencyFrom, currencyTo)}
             className="form__icon-change-currency"
             src={IconChangeCurency}
             alt="change-currency"

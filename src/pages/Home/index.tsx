@@ -31,6 +31,7 @@ const Home = () => {
     event: React.ChangeEvent<HTMLInputElement>,
     value: number
   ) => {
+    event.preventDefault();
     setAmount(value);
   };
 
@@ -42,6 +43,11 @@ const Home = () => {
   const handleChangeTo = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setCurrencyTo(value);
+  };
+
+  const exchangeCurrencies = (currencyFrom: string, currencyTo: string) => {
+    setCurrencyFrom(currencyTo);
+    setCurrencyTo(currencyFrom);
   };
 
   useEffect(() => {
@@ -59,6 +65,7 @@ const Home = () => {
             handleChangeAmount={handleChangeAmount}
             handleChangeFrom={handleChangeFrom}
             handleChangeTo={handleChangeTo}
+            exchangeCurrencies={exchangeCurrencies}
             amount={amount}
             currencyTo={currencyTo}
             currencyFrom={currencyFrom}
