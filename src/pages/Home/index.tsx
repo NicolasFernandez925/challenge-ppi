@@ -1,25 +1,34 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Banner from "../../assets/images/banner.png";
 import Alert from "../../components/common/Alert";
 import Conversion from "../../components/currencies/Conversion";
 import FormSelectCurrencies from "../../components/currencies/FormSelectCurrencies";
 import { ICurrencies } from "../../interface/currency/currency";
-import { Currency } from "../../services/Currency";
+import { Currency as ApiCurrency } from "../../services/Currency";
+import { currencyName, currencySymbol } from "../../utils";
 
 import "./style.css";
 
-const currencySymbol = (currency: string) => currency.split("-")[0].trim();
-const currencyName = (currency: string) => currency.split("-")[1].trim();
+enum Currency {
+  USD = "USD - US Dollar",
+  EUR = "EUR - Euro",
+}
 
 const Home = () => {
   const [currencies, setCurrencies] = useState<ICurrencies | {}>({});
   const [amount, setAmount] = useState<number>(1);
-  const [currencyFrom, setCurrencyFrom] = useState<string>("USD - US Dollar");
-  const [currencyTo, setCurrencyTo] = useState<string>("EUR - Euro");
+  const [currencyFrom, setCurrencyFrom] = useState<string>(Currency.USD);
+  const [currencyTo, setCurrencyTo] = useState<string>(Currency.EUR);
+  const [currencyRateFrom, setCurrencyRateFrom] = useState<number | undefined>(
+    undefined
+  );
+  const [currencyRateTo, setCurrencyRateTo] = useState<number | undefined>(
+    undefined
+  );
 
-  const getCurrencies = async () => {
+  const getCurrencies = useCallback(async () => {
     try {
-      const response = await Currency.getCurrencies();
+      const response = await ApiCurrency.getCurrencies();
       if (!response.ok) {
         throw new Error("An error occurred");
       }
@@ -28,7 +37,33 @@ const Home = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, []);
+
+  const getCurrencyRate = useCallback(async () => {
+    const currencySymbolFrom = currencySymbol(currencyFrom);
+    const currencySymbolTo = currencySymbol(currencyTo);
+    try {
+      const currencyRateFrom = await ApiCurrency.getCurrencyRate(
+        currencySymbolFrom
+      );
+      const currencyRateTo = await ApiCurrency.getCurrencyRate(
+        currencySymbolTo
+      );
+      if (!currencyRateFrom.ok || !currencyRateTo.ok) {
+        throw new Error("An error occurred");
+      }
+      const responseToJSONFrom = await currencyRateFrom.json();
+      const responseToJSONTo = await currencyRateTo.json();
+
+      const valueConvertTo = responseToJSONFrom.rates[currencySymbolTo];
+      const valueConvertFrom = responseToJSONTo.rates[currencySymbolFrom];
+
+      setCurrencyRateFrom(valueConvertTo);
+      setCurrencyRateTo(valueConvertFrom);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [currencyTo, currencyFrom]);
 
   const handleChangeAmount = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -55,9 +90,11 @@ const Home = () => {
 
   useEffect(() => {
     getCurrencies();
-  }, []);
+  }, [getCurrencies]);
 
-  console.log(currencyTo);
+  useEffect(() => {
+    getCurrencyRate();
+  }, [getCurrencyRate]);
 
   return (
     <div className="exchange">
@@ -80,7 +117,13 @@ const Home = () => {
             currencyFrom={currencyFrom}
           />
           <div>
-            <Conversion />
+            <Conversion
+              currencyRateFrom={currencyRateFrom}
+              currencyFrom={currencyFrom}
+              amount={amount}
+              currencyRateTo={currencyRateTo}
+              currencyTo={currencyTo}
+            />
             <Alert />
           </div>
         </div>
