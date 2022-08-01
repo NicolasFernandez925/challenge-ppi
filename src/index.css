@@ -2,15 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
 
 
-body {
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+*{
+  box-sizing: border-box;
   margin: 0;
 }
 
+
 :root {
-  --color-gray-080: #393939;
   --color-gray-090: #323232;
+  --color-gray-080: #393939;
   --color-gray-050: #757575;
   --color-gray-020: #e0e0e0;
+  --color-gray-010: #e0e0e0;
 
   --color-white: #ffffff;
 

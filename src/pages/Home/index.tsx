@@ -31,8 +31,10 @@ const Home = () => {
     <div className="exchange">
       <img className="exchange__banner" src={Banner} alt="banner" />
       <div className="exchange__container">
-        <FormSelectCurrencies currencies={currencies} />
-        <FromCurrencyValue />
+        <div className="echange__currencies">
+          <FormSelectCurrencies currencies={currencies} />
+          <FromCurrencyValue />
+        </div>
       </div>
     </div>
   );
