@@ -31,6 +31,7 @@ const Home = () => {
   return (
     <div className="exchange">
       <img className="exchange__banner" src={Banner} alt="banner" />
+      <h1>Convert 1 Euro to Canadian Dollar - EUR to CA$</h1>
       <div className="exchange__container">
         <div className="echange__currencies">
           <FormSelectCurrencies currencies={currencies} />
