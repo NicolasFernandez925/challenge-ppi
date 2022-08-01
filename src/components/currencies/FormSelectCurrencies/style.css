@@ -14,7 +14,7 @@
 }
 
 select::-ms-expand {
-  display: none; /*Evita que se muestre la flecha por defecto en versiones de IE*/
+  display: none;
 }
 
 .form__container-select-from {

@@ -1,0 +1,23 @@
+.from-currency-value {
+  padding-top: 70px;
+}
+
+.from-currency-value__value-from {
+  font-size: 30px;
+  line-height: 38px;
+  color: var(--color-gray-050);
+}
+
+.from-currency-value__value-from,
+.from-currency-value__value-to {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+}
+
+.from-currency-value__value-to {
+  color: var(--color-gray-090);
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 50px;
+  margin-top: 16px;
+}

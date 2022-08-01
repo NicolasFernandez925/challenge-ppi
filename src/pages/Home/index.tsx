@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Banner from "../../assets/images/banner.png";
-import FromCurrencyValue from "../../components/currencies/Conversion/FromCurrencyValue";
+import Alert from "../../components/common/Alert";
+import Conversion from "../../components/currencies/Conversion";
 import FormSelectCurrencies from "../../components/currencies/FormSelectCurrencies";
 import { ICurrencies } from "../../interface/currency/currency";
 import { Currency } from "../../services/Currency";
@@ -33,7 +34,10 @@ const Home = () => {
       <div className="exchange__container">
         <div className="echange__currencies">
           <FormSelectCurrencies currencies={currencies} />
-          <FromCurrencyValue />
+          <div>
+            <Conversion />
+            <Alert />
+          </div>
         </div>
       </div>
     </div>
