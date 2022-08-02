@@ -42,6 +42,12 @@
   display: flex;
 }
 
+@media (max-width: 1024px) {
+  .exchange h1 {
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .exchange h1 {
     width: 95%;
@@ -59,12 +65,13 @@
     font-size: 24px;
     line-height: 30px;
     top: 25%;
+    width: 90%;
   }
   .exchange .exchange__container {
     height: 600px;
   }
   .exchange .exchange__container {
-    top: 40%;
+    top: 35%;
   }
   .exchange .exchange__container .echange__currencies {
     padding: 0px 16px;
