@@ -4,5 +4,5 @@ interface Currency {
 }
 
 export interface ICurrencies {
-  [key: string]: Currency;
+  [index: string]: Currency;
 }

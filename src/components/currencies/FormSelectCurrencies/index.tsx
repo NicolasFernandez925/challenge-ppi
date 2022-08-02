@@ -10,22 +10,18 @@ interface IProps {
     event: React.ChangeEvent<HTMLInputElement>,
     value: number
   ) => void;
-  handleChangeFrom: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  handleChangeTo: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleChangeCurrencies: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   exchangeCurrencies: (currencyFrom: string, currencyTo: string) => void;
-  currencyTo: string;
-  currencyFrom: string;
+  currency: Record<string, string>;
   amount: number;
 }
 
 const FormSelectCurrencies: React.FC<IProps> = ({
   currencies,
   handleChangeAmount,
-  handleChangeFrom,
-  handleChangeTo,
+  handleChangeCurrencies,
   exchangeCurrencies,
-  currencyTo,
-  currencyFrom,
+  currency,
   amount,
 }) => {
   const convertCurrenciesToArray = Object.entries(currencies);
@@ -51,15 +47,17 @@ const FormSelectCurrencies: React.FC<IProps> = ({
         <div className="form__container-select-from">
           <select
             className="form__input"
-            name="currency-from"
+            name="currencyFrom"
             id="currency-from"
-            onChange={handleChangeFrom}
-            value={currencyFrom}
+            onChange={handleChangeCurrencies}
+            value={currency.currencyFrom}
           >
             {currencyOptions()}
           </select>
           <img
-            onClick={() => exchangeCurrencies(currencyFrom, currencyTo)}
+            onClick={() =>
+              exchangeCurrencies(currency.currencyFrom, currency.currencyTo)
+            }
             className="form__icon-change-currency"
             src={IconChangeCurency}
             alt="change-currency"
@@ -69,10 +67,10 @@ const FormSelectCurrencies: React.FC<IProps> = ({
         <label htmlFor="currency-to">To:</label>
         <select
           className="form__input"
-          name="currency-to"
+          name="currencyTo"
           id="currency-to"
-          onChange={handleChangeTo}
-          value={currencyTo}
+          onChange={handleChangeCurrencies}
+          value={currency.currencyTo}
         >
           {currencyOptions()}
         </select>

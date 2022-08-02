@@ -21,3 +21,16 @@
   line-height: 50px;
   margin-top: 16px;
 }
+
+.conversion {
+  margin-top: 50px;
+}
+.conversion .conversion__value-to,
+.conversion .conversion__value-from {
+  font-family: "Quicksand", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 25px;
+  color: var(--color-gray-050);
+  margin-bottom: 12px;
+}
