@@ -48,7 +48,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 912px) {
   .exchange h1 {
     width: 95%;
   }
@@ -68,7 +68,7 @@
     width: 90%;
   }
   .exchange .exchange__container {
-    height: 600px;
+    height: 580px;
   }
   .exchange .exchange__container {
     top: 35%;
