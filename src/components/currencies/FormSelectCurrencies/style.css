@@ -63,3 +63,48 @@ select::-ms-expand {
   line-height: 24px;
   color: var(--color-gray-090);
 }
+
+@media (max-width: 1024px) {
+  .form__container {
+    margin-right: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .form__container {
+    padding-top: 60px;
+  }
+  .from-currency-value {
+    padding-top: 30px;
+  }
+}
+
+@media (max-width: 690px) {
+  .form .form__input {
+    width: 100%;
+    margin-bottom: 0px;
+  }
+  .form__container {
+    margin-right: 0px;
+    padding-top: 22px;
+  }
+
+  .form > label:not(:nth-child(1)) {
+    margin-top: 24px;
+  }
+
+  .form__container-select-from {
+    flex-direction: column;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  img.form__icon-change-currency {
+    margin-top: 40px;
+    margin-bottom: 45px;
+  }
+
+  .form .form__icon-change-currency {
+    margin-left: 0px;
+  }
+}

@@ -34,3 +34,34 @@
   color: var(--color-gray-050);
   margin-bottom: 12px;
 }
+
+@media (max-width: 690px) {
+  .from-currency-value {
+    padding-top: 28px;
+  }
+  .from-currency-value__value-from {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .from-currency-value__value-to {
+    margin-top: 8px;
+    font-size: 20px;
+    line-height: 25px;
+  }
+
+  .alert {
+    width: 100%;
+    margin-top: 75px;
+  }
+
+  .conversion {
+    margin-top: 28px;
+  }
+
+  .conversion .conversion__value-to,
+  .conversion .conversion__value-from {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
